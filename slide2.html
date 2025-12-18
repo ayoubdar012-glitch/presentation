@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACCROCHE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a192f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a192f 0%, #1a2a4a 50%, #0a192f 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('image3.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            z-index: 1;
+        }
+        .light-effect {
+            position: absolute;
+            top: -150px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 183, 77, 0.3) 0%, rgba(255, 183, 77, 0) 70%);
+            border-radius: 50%;
+            z-index: 2;
+            filter: blur(40px);
+        }
+        .light-effect-2 {
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 183, 77, 0.2) 0%, rgba(255, 183, 77, 0) 70%);
+            border-radius: 50%;
+            z-index: 2;
+            filter: blur(30px);
+        }
+        .content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 60px 70px;
+            text-align: center;
+        }
+        .question-icon {
+            font-size: 64px;
+            color: #ffb74d;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            text-shadow: 0 0 20px rgba(255, 183, 77, 0.5);
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 60px;
+            color: #ffffff;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+            max-width: 900px;
+        }
+        .highlight {
+            color: #ffb74d;
+            font-weight: 700;
+        }
+        .balance-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .balance {
+            position: relative;
+            width: 600px;
+            height: 300px;
+        }
+        .balance-beam {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 8px;
+            background-color: #a8b2d1;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(168, 178, 209, 0.3);
+        }
+        .balance-stand {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 120px;
+            background-color: #a8b2d1;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(168, 178, 209, 0.3);
+        }
+        .balance-base {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            background-color: #a8b2d1;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(168, 178, 209, 0.3);
+        }
+        .plate {
+            position: absolute;
+            width: 160px;
+            height: 8px;
+            background-color: #a8b2d1;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(168, 178, 209, 0.3);
+        }
+        .plate-left {
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+        }
+        .plate-right {
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+        }
+        .plate-container {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
+            height: 160px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .plate-container-left {
+            left: 50px;
+        }
+        .plate-container-right {
+            right: 50px;
+        }
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(255, 183, 77, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(255, 183, 77, 0.2);
+        }
+        .material-icons {
+            font-size: 40px;
+            color: #ffb74d;
+        }
+        .plate-text {
+            font-size: 22px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .string {
+            position: absolute;
+            width: 2px;
+            height: 80px;
+            background-color: #a8b2d1;
+            top: 50%;
+            transform: translateY(-100%);
+        }
+        .string-left {
+            left: 80px;
+        }
+        .string-right {
+            right: 80px;
+        }
+        .problem-indicator {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 183, 77, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 183, 77, 0.5);
+            box-shadow: 0 0 15px rgba(255, 183, 77, 0.2);
+        }
+        .problem-indicator .material-icons {
+            font-size: 24px;
+            color: #ffb74d;
+            margin-right: 8px;
+        }
+        .problem-text {
+            font-size: 16px;
+            color: #ffb74d;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="background"></div>
+        <div class="light-effect"></div>
+        <div class="light-effect-2"></div>
+        <div class="content">
+            <i class="material-icons question-icon">help_outline</i>
+            <h1 class="title">La force d'une recherche dépend autant de sa <span class="highlight">réalisation</span> que de sa <span class="highlight">visibilité</span> et de sa <span class="highlight">clarté</span>.</h1>
+            
+            <div class="balance-container">
+                <div class="balance">
+                    <div class="balance-beam"></div>
+                    <div class="balance-stand"></div>
+                    <div class="balance-base"></div>
+                    
+                    <div class="plate plate-left"></div>
+                    <div class="plate plate-right"></div>
+                    
+                    <div class="string string-left"></div>
+                    <div class="string string-right"></div>
+                    
+                    <div class="plate-container plate-container-left">
+                        <div class="icon-container">
+                            <i class="material-icons">science</i>
+                        </div>
+                        <div class="plate-text">RÉALISATION</div>
+                    </div>
+                    
+                    <div class="plate-container plate-container-right">
+                        <div class="icon-container">
+                            <i class="material-icons">campaign</i>
+                        </div>
+                        <div class="plate-text">VISIBILITÉ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="problem-indicator">
+            <i class="material-icons">priority_high</i>
+            <span class="problem-text">Affirmation</span>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question centrale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 50px 70px 20px;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #1a5276;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: #3498db;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 50px;
+        }
+        .left-content {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 40px;
+        }
+        .main-text {
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            color: #34495e;
+        }
+        .right-content {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .question-mark {
+            width: 220px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(52, 152, 219, 0.1);
+            box-shadow: 0 8px 16px rgba(52, 152, 219, 0.2);
+        }
+        .question-mark img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        .footer {
+            padding: 0 70px 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .tags {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .tag {
+            font-size: 18px;
+            color: #3498db;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        .highlight {
+            color: #3498db;
+            font-weight: 600;
+        }
+        .objective {
+            font-size: 16px;
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">QUESTION CENTRALE ❓</h1>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <p class="main-text">Bref : comment <span class="highlight">faire</span> devient vraiment <span class="highlight">dire</span>, et comment <span class="highlight">dire mieux</span> peut permettre de <span class="highlight">faire davantage</span> ?</p>
+                <p class="objective">🎯 Objectif : poser la problématique globale</p>
+            </div>
+            <div class="right-content">
+                <div class="question-mark">
+                    <img src="https://sfile.chatglm.cn/images-ppt/95c43d1b3f34.jpg" alt="Point d'interrogation stylisé">
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="tags">
+                <div class="tag">Communication</div>
+                <div class="tag">Clarté</div>
+                <div class="tag">Visibilité</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre parcours en trois actes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a192f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a192f 0%, #1a2a4a 50%, #0a192f 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            z-index: 1;
+        }
+        .light-effect {
+            position: absolute;
+            top: -150px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 183, 77, 0.3) 0%, rgba(255, 183, 77, 0) 70%);
+            border-radius: 50%;
+            z-index: 2;
+            filter: blur(40px);
+        }
+        .light-effect-2 {
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 183, 77, 0.2) 0%, rgba(255, 183, 77, 0) 70%);
+            border-radius: 50%;
+            z-index: 2;
+            filter: blur(30px);
+        }
+        .content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 50px 70px;
+            text-align: center;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #ffffff;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+        }
+        .circle-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .segment {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .segment:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        .segment-1 {
+            background-color: rgba(26, 35, 126, 0.15);
+            border: 2px solid #1a237e;
+            clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 50%);
+            box-shadow: 0 0 15px rgba(26, 35, 126, 0.3);
+        }
+        .segment-2 {
+            background-color: rgba(87, 121, 94, 0.15);
+            border: 2px solid #57795e;
+            clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
+            box-shadow: 0 0 15px rgba(87, 121, 94, 0.3);
+        }
+        .segment-3 {
+            background-color: rgba(255, 183, 77, 0.15);
+            border: 2px solid #ffb74d;
+            clip-path: polygon(50% 50%, 50% 100%, 0% 100%, 0% 0%, 50% 0%);
+            box-shadow: 0 0 15px rgba(255, 183, 77, 0.3);
+        }
+        .segment-content {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            width: 33.33%;
+            height: 33.33%;
+        }
+        .segment-1 .segment-content {
+            top: 15%;
+            right: 10%;
+        }
+        .segment-2 .segment-content {
+            bottom: 15%;
+            right: 10%;
+        }
+        .segment-3 .segment-content {
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+        }
+        .segment-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+        .segment-1 .segment-title {
+            color: #1a237e;
+        }
+        .segment-2 .segment-title {
+            color: #57795e;
+        }
+        .segment-3 .segment-title {
+            color: #ffb74d;
+        }
+        .segment-points {
+            font-size: 16px;
+            color: #e6e6e6;
+            line-height: 1.5;
+            text-align: left;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .segment.active .segment-points {
+            opacity: 1;
+            max-height: 200px;
+        }
+        .segment-points li {
+            margin-bottom: 8px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 15px;
+        }
+        .segment-points li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+        .segment-1 .segment-points li::before {
+            color: #1a237e;
+        }
+        .segment-2 .segment-points li::before {
+            color: #57795e;
+        }
+        .segment-3 .segment-points li::before {
+            color: #ffb74d;
+        }
+        .center-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background-color: #0a192f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 183, 77, 0.3);
+        }
+        .material-icons {
+            font-size: 48px;
+            color: #ffb74d;
+        }
+        .zoomed-view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 20;
+            padding: 40px;
+        }
+        .zoomed-view.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .zoomed-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+        .zoomed-points {
+            font-size: 20px;
+            color: #e6e6e6;
+            line-height: 1.6;
+            text-align: left;
+            max-width: 600px;
+        }
+        .zoomed-points li {
+            margin-bottom: 15px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+        .zoomed-points li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+        }
+        .back-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background-color: rgba(255, 183, 77, 0.2);
+            color: #ffb74d;
+            border: 1px solid rgba(255, 183, 77, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(255, 183, 77, 0.2);
+            transition: all 0.2s ease;
+        }
+        .back-button:hover {
+            background-color: rgba(255, 183, 77, 0.3);
+            transform: scale(1.05);
+        }
+        .segment-icon {
+            margin-bottom: 10px;
+        }
+        .segment-1 .segment-icon {
+            color: #1a237e;
+        }
+        .segment-2 .segment-icon {
+            color: #57795e;
+        }
+        .segment-3 .segment-icon {
+            color: #ffb74d;
+        }
+        .hover-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            color: #e6e6e6;
+            display: flex;
+            align-items: center;
+            background-color: rgba(10, 25, 47, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 183, 77, 0.2);
+        }
+        .hover-hint .material-icons {
+            font-size: 20px;
+            margin-right: 5px;
+            color: #ffb74d;
+        }
+        .segment:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .segment-1:hover {
+            background-color: rgba(26, 35, 126, 0.25);
+        }
+        .segment-2:hover {
+            background-color: rgba(87, 121, 94, 0.25);
+        }
+        .segment-3:hover {
+            background-color: rgba(255, 183, 77, 0.25);
+        }
+        .highlight {
+            color: #ffb74d;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="background" style="background-color: rgba(10, 25, 47, 0.7);"></div>
+        <div class="light-effect"></div>
+        <div class="light-effect-2"></div>
+        <div class="content">
+            <h1 class="title">Notre parcours en <span class="highlight">trois actes</span></h1>
+            
+            <div class="circle-container">
+                <div class="segment segment-1" onclick="toggleZoom(1)">
+                    <div class="segment-content">
+                        <i class="material-icons segment-icon">campaign</i>
+                        <h2 class="segment-title">I. Communication scientifique</h2>
+                        <ul class="segment-points">
+                            <li>Rendre visible sa recherche</li>
+                            <li>Structurer pour penser juste</li>
+                            <li>Devenir identifiable</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="segment segment-2" onclick="toggleZoom(2)">
+                    <div class="segment-content">
+                        <i class="material-icons segment-icon">psychology</i>
+                        <h2 class="segment-title">II. Clarifier sa pensée</h2>
+                        <ul class="segment-points">
+                            <li>L'oral comme outil d'auto-clarification</li>
+                            <li>Rendre compréhensible pour les non-spécialistes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="segment segment-3" onclick="toggleZoom(3)">
+                    <div class="segment-content">
+                        <i class="material-icons segment-icon">handshake</i>
+                        <h2 class="segment-title">III. Portée sociale</h2>
+                        <ul class="segment-points">
+                            <li>Parler aux acteurs de terrain</li>
+                            <li>Maximiser l'impact concret</li>
+                            <li>Une recherche qui devient action</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="center-icon">
+                    <i class="material-icons">hub</i>
+                </div>
+            </div>
+            
+            <div class="hover-hint">
+                <i class="material-icons">touch_app</i>
+                <span>Cliquez sur un segment pour explorer</span>
+            </div>
+        </div>
+        
+        <!-- Zoomed views for each segment -->
+        <div class="zoomed-view" id="zoom-1">
+            <button class="back-button" onclick="toggleZoom(0)">
+                <i class="material-icons">close</i>
+            </button>
+            <h2 class="zoomed-title">I. De l'importance de la <span class="highlight">communication scientifique orale</span></h2>
+            <ul class="zoomed-points">
+                <li><span class="highlight">Rendre visible</span> sa recherche : Donner à vos travaux la visibilité qu'ils méritent</li>
+                <li><span class="highlight">Structurer</span> pour penser juste : Organiser vos idées pour une communication claire et efficace</li>
+                <li><span class="highlight">Devenir identifiable</span> : Créer votre marque personnelle dans le monde scientifique</li>
+            </ul>
+        </div>
+        
+        <div class="zoomed-view" id="zoom-2">
+            <button class="back-button" onclick="toggleZoom(0)">
+                <i class="material-icons">close</i>
+            </button>
+            <h2 class="zoomed-title">II. <span class="highlight">Clarifier et simplifier</span> sa pensée</h2>
+            <ul class="zoomed-points">
+                <li>L'oral comme outil d'<span class="highlight">auto-clarification</span> : Transformer des concepts complexes en idées accessibles</li>
+                <li>Rendre <span class="highlight">compréhensible</span> pour les non-spécialistes : Adapter votre discours à différents publics</li>
+            </ul>
+        </div>
+        
+        <div class="zoomed-view" id="zoom-3">
+            <button class="back-button" onclick="toggleZoom(0)">
+                <i class="material-icons">close</i>
+            </button>
+            <h2 class="zoomed-title">III. Relier la recherche à sa <span class="highlight">portée sociale</span></h2>
+            <ul class="zoomed-points">
+                <li>Parler aux <span class="highlight">acteurs de terrain</span> : Connecter vos recherches aux réalités pratiques</li>
+                <li>Maximiser l'<span class="highlight">impact concret</span> : Transformer la connaissance en applications tangibles</li>
+                <li>Une recherche qui devient <span class="highlight">action</span> : Passer de la théorie à la pratique</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleZoom(segmentId) {
+            // Close all zoomed views
+            const allZoomedViews = document.querySelectorAll('.zoomed-view');
+            allZoomedViews.forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Open the selected zoomed view
+            if (segmentId > 0) {
+                const selectedView = document.getElementById(`zoom-${segmentId}`);
+                if (selectedView) {
+                    selectedView.classList.add('active');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
